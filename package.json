@@ -9,9 +9,29 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@material-tailwind/react": "^2.1.9",
+    "@metaplex-foundation/js": "^0.20.1",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@react-spring/web": "^9.7.3",
+    "@solana/wallet-adapter-base": "^0.9.23",
+    "@solana/wallet-adapter-react": "^0.15.35",
+    "@solana/wallet-adapter-react-ui": "^0.9.35",
+    "@solana/wallet-adapter-wallets": "^0.19.32",
+    "@solana/web3.js": "^1.93.0",
+    "@supabase/supabase-js": "^2.43.5",
+    "crypto-js": "^4.2.0",
+    "date-fns": "^3.6.0",
+    "flowbite-react": "^0.10.1",
+    "framer-motion": "^11.2.12",
+    "lucide-react": "^0.399.0",
+    "next": "14.2.4",
     "react": "^18",
+    "react-confetti": "^6.1.0",
     "react-dom": "^18",
-    "next": "14.2.4"
+    "react-icons": "^5.2.1",
+    "react-modal": "^3.16.1",
+    "react-toastify": "^10.0.5",
+    "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
     "postcss": "^8",
