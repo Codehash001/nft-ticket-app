@@ -8,6 +8,7 @@ export default function PhaseModal({ isOpen, onClose, onSave }) {
   const [endTime, setEndTime] = useState('');
   const [imageFile, setImageFile] = useState(null);
   const [jsonFile, setJsonFile] = useState(null);
+  const [isSaving , setIsSaving] = useState(false);
 
   const handleFileChange = (e, setFile) => {
     setFile(e.target.files[0]);
@@ -15,6 +16,7 @@ export default function PhaseModal({ isOpen, onClose, onSave }) {
 
   const handleSave = async () => {
     try {
+      setIsSaving(true);
       // Upload image to Supabase bucket
       let imagePath = '';
       if (imageFile) {
@@ -32,6 +34,7 @@ export default function PhaseModal({ isOpen, onClose, onSave }) {
       console.error('Error saving phase:', error);
       toast.error('Error saving phase. Please try again.');
     }
+    setIsSaving(false);
   };
 
   const resetForm = () => {
@@ -95,7 +98,7 @@ export default function PhaseModal({ isOpen, onClose, onSave }) {
             onClick={handleSave} 
             className="bg-blue-500 text-white px-4 py-2 rounded"
           >
-            Save
+            {isSaving ? 'Saving...' : "Save"}
           </button>
         </div>
       </div>
