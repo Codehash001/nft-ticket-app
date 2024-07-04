@@ -23,7 +23,7 @@ export default function App({ Component, pageProps }) {
           </ul>
         </div>
                   {/* pages */}
-                  <div className="w-full h-full overflow-hidden">
+                  <div className="w-full h-full md:overflow-hidden">
                       {/* Header */}
           <NavHeader/>
           <div className="h-full w-full -mt-10">

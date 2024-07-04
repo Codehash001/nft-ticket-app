@@ -13,8 +13,8 @@ const Modal = ({ isOpen, onClose, children }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
-      <div className="relative bg-gradient-to-r from-purple-500 to-pink-500 p-6 rounded-lg max-w-lg w-full">
+    <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50 p-4">
+      <div className="relative bg-gradient-to-r from-purple-500 to-pink-500 p-6 rounded-lg w-full max-w-sm md:max-w-lg">
         {children}
         <button
           onClick={onClose}
@@ -82,19 +82,19 @@ export default function Ticket({ raffleWallet }) {
   };
 
   if (status === "loading") {
-    return <div>Loading...</div>;
+    return <div className="text-center p-4">Loading...</div>;
   }
 
   if (status === "error") {
-    return <div>No mint phases found.</div>;
+    return <div className="text-center p-4">No mint phases found.</div>;
   }
 
   return (
     <>
-      <div className="max-w-md mx-auto bg-background rounded-lg shadow-md overflow-hidden md:max-w-4xl text-muted-foreground z-40 relative">
-        <div className="md:flex">
-          <div className="flex items-center justify-center bg-muted md:flex-shrink-0 border-r-2 border-black border-dotted">
-            <div className="px-8 py-4 text-center">
+      <div className="max-w-sm max-h-[600px] mx-auto bg-background rounded-lg shadow-md overflow-hidden md:max-w-4xl text-muted-foreground z-40 relative">
+        <div className="md:flex flex-col md:flex-row">
+          <div className="flex items-center justify-center bg-muted md:flex-shrink-0 border-b-2 md:border-b-0 md:border-r-2 border-black border-dotted p-4 md:p-0">
+            <div className="text-center">
               <div className="text-4xl font-bold text-black">
                 {format(new Date(phase.end_time), "d")}
               </div>
@@ -103,11 +103,11 @@ export default function Ticket({ raffleWallet }) {
               </div>
             </div>
           </div>
-          <div className="p-8 relative">
+          <div className="p-4 md:p-8 relative flex-grow">
             <h2 className="text-xl font-bold">
               {phase && phase.winners_wallet ? "Winner" : "Next Winner"}
             </h2>
-            <h1 className="text-2xl font-bold text-gray-900">
+            <h1 className="text-2xl font-bold text-gray-900 break-all">
               {phase && phase.winners_wallet
                 ? `${truncateAddress(phase.winners_wallet)}`
                 : "will be announced soon..."}
@@ -142,22 +142,22 @@ export default function Ticket({ raffleWallet }) {
               )}
             </div>
           </div>
-          <div className="w-[280px] h-auto rounded-lg p-[1px] bg-muted">
-            <img src="/home-image.png" alt="Home" className="rounded-lg" />
+          <div className="w-full md:w-[280px] h-auto rounded-lg p-[1px] bg-muted flex items-center justify-center">
+            <img src="/home-image.png" alt="Home" className="rounded-lg w-[200px] md:w-[280px] h-auto" />
           </div>
         </div>
 
-        <div className="absolute top-6 -left-9 -rotate-45 w-40">
-              <div className="inline-flex items-center justify-center bg-yellow-400 text-yellow-900 px-3 py-1 w-full shadow-md hover:shadow-lg transition-shadow duration-300">
-                <Star className="w-4 h-4 mr-1" />
-                <span className="font-bold mr-2">
-                  {process.env.NEXT_PUBLIC_MINT_COST}
-                </span>
-                <span className="bg-yellow-300 px-2 py-0.5 rounded-full text-sm font-semibold">
-                  Sol
-                </span>
-              </div>
-            </div>
+        <div className="absolute top-10 -left-28 md:top-6 md:-left-9 -rotate-45 w-full md:w-40">
+          <div className="inline-flex items-center justify-center bg-yellow-400 text-yellow-900 px-3 py-1 w-full shadow-md hover:shadow-lg transition-shadow duration-300">
+            <Star className="w-4 h-4 mr-1" />
+            <span className="font-bold mr-2">
+              {process.env.NEXT_PUBLIC_MINT_COST}
+            </span>
+            <span className="bg-yellow-300 px-2 py-0.5 rounded-full text-sm font-semibold">
+              Sol
+            </span>
+          </div>
+        </div>
       </div>
       <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
         <h2 className="text-4xl font-bold text-white mb-4">
@@ -168,11 +168,7 @@ export default function Ticket({ raffleWallet }) {
             ? `${phase.winners_wallet}`
             : "No winner yet"}
         </p>
-        <p>is the winner of this phase</p>
-        {/* <p className="text-white mt-2">Truncated address:</p> */}
-        {/* <p className="text-white font-bold">
-                    {phase && phase.winners_wallet ? truncateAddress(phase.winners_wallet) : 'N/A'}
-                </p> */}
+        <p className="text-white">is the winner of this phase</p>
       </Modal>
       {isModalOpen && (
         <Confetti width={windowSize.width} height={window.innerHeight} />
